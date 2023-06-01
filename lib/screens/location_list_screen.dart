@@ -75,31 +75,29 @@ class _LocationListScreenState extends State<LocationListScreen> {
                       : providerValue.locationsList
                           .sublist(startIndex, endIndex);
 
-                  return Wrap(children: [
-                    ListView.builder(
-                      itemCount: pageItems.length,
-                      itemBuilder: (BuildContext context, int itemIndex) {
-                        return GestureDetector(
-                            onTap: () {
-                              providerValue
-                                  .setLocationvalue(pageItems[itemIndex].name);
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    ctx: context,
-                                    duration: Duration(seconds: 2),
-                                    child: CharacterListScreen(),
-                                    type: PageTransitionType.theme,
-                                    childCurrent: LocationListScreen(),
-                                    reverseDuration: Duration(seconds: 2),
-                                  ));
-                            },
-                            child: loactionItems(
-                              locationObject: pageItems[itemIndex],
-                            ));
-                      },
-                    )
-                  ]);
+                  return ListView.builder(
+                    itemCount: pageItems.length,
+                    itemBuilder: (BuildContext context, int itemIndex) {
+                      return GestureDetector(
+                          onTap: () {
+                            providerValue
+                                .setLocationvalue(pageItems[itemIndex].name);
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                  ctx: context,
+                                  duration: Duration(seconds: 2),
+                                  child: CharacterListScreen(),
+                                  type: PageTransitionType.theme,
+                                  childCurrent: LocationListScreen(),
+                                  reverseDuration: Duration(seconds: 2),
+                                ));
+                          },
+                          child: loactionItems(
+                            locationObject: pageItems[itemIndex],
+                          ));
+                    },
+                  );
                 },
               )
             : Center(child: const CircularProgressIndicator()),
