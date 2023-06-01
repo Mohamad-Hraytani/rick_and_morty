@@ -1,6 +1,6 @@
 # rick_and_morty
 
-A new Flutter project.
+There are some adjustments I had to make to make the app compatible to run as a web version but I didn't realize that I needed a web version until this morning... I apologize for that and I need some time to make the version compatible with the web
 
 ## Getting Started
 
