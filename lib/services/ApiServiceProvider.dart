@@ -111,14 +111,3 @@ notifyListeners();
 
 
 }
-/*       var data ;
-var data2 = []; 
-      for(int i=1 ; i<=7 ; i++){
-      final response = await _dio.get('https://rickandmortyapi.com/api/location/?&page=$i"');
-       data = response.data['results'] as List<dynamic>;
-         data2.addAll(data);
-      
-      
-      }
-      final locations = data2.map((json) => Location.fromJson(json)).toList();
-      return locations; */

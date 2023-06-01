@@ -68,37 +68,6 @@ Location locationObject ;
              ],),]
            ),
            
-         //  
-           
-           
-           
-           /* 
-           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-           
-           Text(locationObject.type),
-           SizedBox()
-           
-           ],),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-           Text("Dimension"),
-           Text(locationObject.dimension),
-           SizedBox()
-           
-           ],),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-           Text("Resident Count"),
-           Text(locationObject.resident.length.toString()),
-           SizedBox()
-           
-           ],) */
-           
          ]),
        ),
       ),

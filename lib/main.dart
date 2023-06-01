@@ -48,21 +48,7 @@ ChangeNotifierProvider(
            
            
     )
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    /*    ChangeNotifierProvider( 
-        create: (_) => ApiServiceProvider(), 
-         child: CharacterListScreen()),  */
+  
     );
   }
 }
