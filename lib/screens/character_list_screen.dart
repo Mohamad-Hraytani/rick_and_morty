@@ -238,52 +238,54 @@ buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);});},
       ],),
     )
  ),
-   Container(
-
-    height: 450,
-margin: EdgeInsets.all(20),
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: providerValue.charactersList.length,
-    itemBuilder:(context, index) {
-    return  Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+   SingleChildScrollView(
+     child: Container(
+   
+      height: 450,
+   margin: EdgeInsets.all(20),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: providerValue.charactersList.length,
+      itemBuilder:(context, index) {
+      return  Column(
+   crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onTap: (){
+   Navigator.push(context,
+     PageTransition( ctx: context,
+                     duration: Duration(seconds: 2),
+                      child: CharacterDetailsScreen(character:providerValue.charactersList[index]),
+                      type: PageTransitionType.theme,
+                      childCurrent: CharacterListScreen(),
+                      reverseDuration: Duration(seconds: 2),  ));   },
+         child: Container(
+              width: 345,
+              height: 345,
+              decoration: BoxDecoration(             
+               image:DecorationImage(             
+               image:NetworkImage(providerValue.charactersList[index].imageUrl),fit: BoxFit.cover ) ,
+                borderRadius: BorderRadius.all(Radius.circular(15)))),),
+   Text(providerValue.charactersList[index].name , style: TextStyle(fontSize: 24,color: Colors.black,fontWeight: FontWeight.w600,fontFamily: 'Poppins'),),
+    Row(
       children: [
-        GestureDetector(
-          onTap: (){
-Navigator.push(context,
-   PageTransition( ctx: context,
-                   duration: Duration(seconds: 2),
-                    child: CharacterDetailsScreen(character:providerValue.charactersList[index]),
-                    type: PageTransitionType.theme,
-                    childCurrent: CharacterListScreen(),
-                    reverseDuration: Duration(seconds: 2),  ));   },
-       child: Container(
-            width: 345,
-            height: 345,
-            decoration: BoxDecoration(             
-             image:DecorationImage(             
-             image:NetworkImage(providerValue.charactersList[index].imageUrl),fit: BoxFit.cover ) ,
-              borderRadius: BorderRadius.all(Radius.circular(15)))),),
-Text(providerValue.charactersList[index].name , style: TextStyle(fontSize: 24,color: Colors.black,fontWeight: FontWeight.w600,fontFamily: 'Poppins'),),
- Row(
-    children: [
-      Container(
- width: 12,
- height: 12,
- decoration: BoxDecoration(
-    color:providerValue.charactersList[index].status == "Alive" ?Color(0xFF98CD4D)  :providerValue.charactersList[index].status == "Dead" ?Color(0xFFB90000) :Color(0xFFB8B8B8),
-    shape: BoxShape.circle),
-      ),
- SizedBox(width: 2,),
- Text(providerValue.charactersList[index].status ,style: TextStyle(color: Colors.black ,fontSize: 16,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
- Text(" - ${providerValue.charactersList[index].species}" ,style: TextStyle(color: Colors.black ,fontSize: 16,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
-    ],
- ),
-
+        Container(
+    width: 12,
+    height: 12,
+    decoration: BoxDecoration(
+      color:providerValue.charactersList[index].status == "Alive" ?Color(0xFF98CD4D)  :providerValue.charactersList[index].status == "Dead" ?Color(0xFFB90000) :Color(0xFFB8B8B8),
+      shape: BoxShape.circle),
+        ),
+    SizedBox(width: 2,),
+    Text(providerValue.charactersList[index].status ,style: TextStyle(color: Colors.black ,fontSize: 16,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
+    Text(" - ${providerValue.charactersList[index].species}" ,style: TextStyle(color: Colors.black ,fontSize: 16,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
       ],
-    );}),
-  ),
+    ),
+   
+        ],
+      );}),
+     ),
+   ),
  ],),
  ):Center(child: CircularProgressIndicator()),
  )
