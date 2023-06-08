@@ -16,7 +16,10 @@ class _LocationListScreenState extends State<LocationListScreen> {
   final ApiServiceProvider apiService = ApiServiceProvider();
   final List<String> items1 = List.generate(30, (index) => 'Item ${index + 1}');
   final PageController pageController = PageController();
-
+  bool getIsPhone() {
+  final data = MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
+  return data.size.shortestSide < 500 ? true : false;
+}
   int currentPage = 0;
 
   var loading = false;
@@ -52,6 +55,7 @@ class _LocationListScreenState extends State<LocationListScreen> {
       body: Consumer<ApiServiceProvider>(
         builder: (context, providerValue, _) => loading
             ? PageView.builder(
+
                 physics: currentPage >=
                         ((providerValue.locationsList.length / 3)).floor()
                     ? NeverScrollableScrollPhysics()
@@ -75,7 +79,7 @@ class _LocationListScreenState extends State<LocationListScreen> {
                       : providerValue.locationsList
                           .sublist(startIndex, endIndex);
 
-                  return ListView.builder(
+                  return getIsPhone()? ListView.builder(
                     itemCount: pageItems.length,
                     itemBuilder: (BuildContext context, int itemIndex) {
                       return GestureDetector(
@@ -97,7 +101,36 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             locationObject: pageItems[itemIndex],
                           ));
                     },
+                  ):GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:   size.width > 600? 3:1,
+                  mainAxisExtent: size.width > 600? 145: 145,
+
+                    ),
+                itemCount: pageItems.length,
+                itemBuilder: (BuildContext ctx, index) {           
+                  return  GestureDetector(
+                          onTap: () {
+                            providerValue
+                                .setLocationvalue(pageItems[index].name);
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                  ctx: context,
+                                  duration: Duration(seconds: 2),
+                                  child: CharacterListScreen(),
+                                  type: PageTransitionType.theme,
+                                  childCurrent: LocationListScreen(),
+                                  reverseDuration: Duration(seconds: 2),
+                                ));
+                          },
+                          child: loactionItems(
+                            locationObject: pageItems[index],
+                          ));
+                    },
                   );
+
+
                 },
               )
             : Center(child: const CircularProgressIndicator()),
@@ -105,12 +138,13 @@ class _LocationListScreenState extends State<LocationListScreen> {
       bottomNavigationBar: Consumer<ApiServiceProvider>(
         builder: (context, providerValue, _) => loading
             ? Container(
-                width: double.infinity,
+                width:double.infinity,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        width: size.width / 9,
+                      width :getIsPhone()? size.width/ 9:50,
+         
                         child: IconButton(
                             onPressed: currentPage == 0
                                 ? null
@@ -132,7 +166,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                         });
                       },
                       child: Container(
-                          width: size.width / 9,
+                      width :getIsPhone()? size.width/ 9:50,
+   
                           child: Text(
                             "1",
                             style: TextStyle(
@@ -149,8 +184,9 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             height: 0,
                           )
                         : Container(
-                            width: size.width / 9,
-                            child: Text("...",
+                          width :getIsPhone()? size.width/ 9:50,
+  
+                            child: Text("...",              
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -161,7 +197,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             height: 0,
                           )
                         : Container(
-                            width: size.width / 9,
+                            width :getIsPhone()? size.width/ 9:50,
+
                             child: TextButton(
                               onPressed: () {
                                 setState(() {
@@ -180,7 +217,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             ),
                           ),
                     Container(
-                      width: size.width / 9,
+                          width :getIsPhone()? size.width/ 9:50,
+
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Color(0xFFD9D9D9)),
                       child: TextButton(
@@ -204,7 +242,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             height: 0,
                           )
                         : Container(
-                            width: size.width / 9,
+                          width :getIsPhone()? size.width/ 9:50,
+           
                             child: TextButton(
                               onPressed: () {
                                 setState(() {
@@ -226,7 +265,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                             height: 0,
                           )
                         : Container(
-                            width: size.width / 9,
+                             width :getIsPhone()? size.width/ 9:50,
+
                             child: Text(
                               "...",
                               style: TextStyle(
@@ -249,7 +289,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                           });
                         },
                         child: Container(
-                            width: size.width / 9,
+                           width :getIsPhone()? size.width/ 9:50,
+     
                             child: Text(
                               "${(providerValue.locationsList.length / 3).ceil()}",
                               style: TextStyle(
@@ -265,7 +306,8 @@ class _LocationListScreenState extends State<LocationListScreen> {
                                   fontFamily: 'Poppins'),
                             ))),
                     Container(
-                        width: size.width / 9,
+                         width :getIsPhone()? size.width/ 9:50,
+         
                         child: IconButton(
                           onPressed: currentPage >=
                                   ((providerValue.locationsList.length / 3) - 1)

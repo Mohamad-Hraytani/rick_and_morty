@@ -12,6 +12,7 @@ class loactionItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 130,
+      width: 440,
       child: Card(
         margin: EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
