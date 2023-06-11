@@ -9,6 +9,7 @@ import 'package:rick_and_morty/services/ApiServiceProvider.dart';
 
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rick_and_morty/widgets/filterButton.dart';
 class CharacterListScreen extends StatefulWidget {
   @override
 
@@ -26,7 +27,7 @@ bool get State_button_Dead => buttonColor_dead == Color.fromRGBO(255, 255, 255, 
 bool get State_button_Alive => buttonColor_Alive == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
 bool get State_button_unknown => buttonColor_unknown == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
 
-ScrollController n = new ScrollController();
+
 
   bool getIsPhone() {
   final data = MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
@@ -91,7 +92,22 @@ backgroundColor: Colors.white,
         child: Row(
           children: [
        SizedBox(width: 5,),
- OutlinedButton(
+
+ filterbutton(
+  BorderColor: Color(0xFFB90000),
+   CircleColor: Color(0xFFB90000),
+    activeColor: Color.fromRGBO(185, 0, 0, 0.05),
+     buttonColor: providerValue.buttonColor_dead,
+      disabledColor: Color.fromRGBO(255, 255, 255, 0.05),
+       hoveredColor: Color.fromRGBO(185, 0, 0, 0.2),
+        nameButton:"Dead",
+         pressedColor: Color.fromRGBO(185, 0, 0, 0.5),),
+
+
+         
+             
+
+/*  OutlinedButton(
    style: ButtonStyle(
    fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
    shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFFB90000),  width: 1,));}) ,
@@ -146,9 +162,19 @@ backgroundColor: Colors.white,
             Text("Dead" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
       ],
    ),
-      ),
+      ), */
        SizedBox(width: 5,),
- OutlinedButton(
+
+ filterbutton(
+  BorderColor: Color(0xFF98CD4D),
+   CircleColor: Color(0xFF98CD4D),
+    activeColor: Color.fromRGBO(152, 205, 77, 0.05),
+     buttonColor: providerValue.buttonColor_Alive,
+      disabledColor: Color.fromRGBO(255, 255, 255, 0.05) ,
+       hoveredColor: Color.fromRGBO(152, 205, 77, 0.2) ,
+        nameButton:"Alive",
+         pressedColor: Color.fromRGBO(152, 205, 77, 0.5),),
+/*  OutlinedButton(
    style: ButtonStyle(
    fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
    shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFF98CD4D),  width: 1,));}) ,
@@ -170,7 +196,8 @@ backgroundColor: Colors.white,
  
     if(State_button_Alive == false)
     {
- providerValue.fetchCharacters(status:"Alive").then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));
+ providerValue.fetchCharacters(status:"Alive").then(
+  (charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value ).toList()));
  
     } 
      
@@ -206,16 +233,32 @@ backgroundColor: Colors.white,
             Text("Alive" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
       ],
    ),
-      ),
-        SizedBox(width: 5,),     
- OutlinedButton(
+      ), */
+
+
+        SizedBox(width: 5,),   
+
+ filterbutton(
+  BorderColor: Color.fromRGBO(184, 184, 184, 0.5),
+   CircleColor: Color(0xFFB8B8B8),
+    activeColor: Color.fromRGBO(184, 184, 184, 0.05),
+     buttonColor: providerValue.buttonColor_unknown,
+      disabledColor: Color.fromRGBO(255, 255, 255, 0.05),
+       hoveredColor: Color.fromRGBO(184, 184, 184, 0.2) ,
+        nameButton:"unknown",
+         pressedColor: Color.fromRGBO(184, 184, 184, 0.5) ,),
+
+
+/*  OutlinedButton(
    style: ButtonStyle(
    fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
    shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color.fromRGBO(184, 184, 184, 0.5),  width: 1,));}) ,
    backgroundColor:MaterialStateProperty.resolveWith((states) {
      if(states.contains(MaterialState.hovered)) {
        return Color.fromRGBO(184, 184, 184, 0.2) ;
-     }else if(states.contains(MaterialState.pressed)) {
+     }else if(states.contains(MaterialState.disabled)) {
+       return Color.fromRGBO(255, 255, 255, 0.05) ;}
+       else if(states.contains(MaterialState.pressed)) {
        return Color.fromRGBO(184, 184, 184, 0.5) ;
      }else {return buttonColor_unknown;}
         }),),
@@ -248,7 +291,7 @@ backgroundColor: Colors.white,
         Text("Unknown" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
       ],
    ),
-      ),
+      ), */
         ],),
       )
    ),

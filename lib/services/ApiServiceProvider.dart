@@ -10,6 +10,9 @@ class ApiServiceProvider with ChangeNotifier {
   late String location_value;
   List<Character> charactersList = [];
   List<Location> locationsList = [];
+Color buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
+Color buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);
+Color buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
 
   Future<List<Location>> fetchLocations() async {
     try {
