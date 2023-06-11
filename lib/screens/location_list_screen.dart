@@ -13,8 +13,8 @@ class LocationListScreen extends StatefulWidget {
 }
 
 class _LocationListScreenState extends State<LocationListScreen> {
-  final ApiServiceProvider apiService = ApiServiceProvider();
-  final List<String> items1 = List.generate(30, (index) => 'Item ${index + 1}');
+
+
   final PageController pageController = PageController();
   bool getIsPhone() {
   final data = MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
