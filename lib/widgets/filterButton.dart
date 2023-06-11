@@ -12,13 +12,6 @@ Color buttonColor;
 String nameButton;
 Color activeColor;
 Color CircleColor;
-
-
-
-
-
-
-
  filterbutton({required this.BorderColor ,required this.hoveredColor, required this.disabledColor,required this.pressedColor,required this.buttonColor,required this.nameButton,required this.activeColor,required this.CircleColor});
 
 
@@ -59,9 +52,7 @@ State_button = widget.buttonColor  == Color.fromRGBO(255, 255, 255, 0.05)? false
        return widget.disabledColor;
      }else if(states.contains(MaterialState.pressed)) {
        return widget.pressedColor ;
-     }
-     
-      else {
+     }else {
        return  widget.buttonColor;
      }
         }),),
@@ -98,12 +89,11 @@ else
  providerValue.buttonColor_dead = widget.disabledColor;
 
 }
-   
+
    });},
-   child:
+child:
    
-     Row(
-      
+     Row( 
       children: [
         Container(
    width: 12,
