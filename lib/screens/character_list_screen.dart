@@ -19,15 +19,6 @@ class CharacterListScreen extends StatefulWidget {
 class _CharacterListScreenState extends State<CharacterListScreen> {
  
  var loading = false;
-Color buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
-Color buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);
-Color buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
-
-bool get State_button_Dead => buttonColor_dead == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
-bool get State_button_Alive => buttonColor_Alive == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
-bool get State_button_unknown => buttonColor_unknown == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
-
-
 
   bool getIsPhone() {
   final data = MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
@@ -35,8 +26,6 @@ bool get State_button_unknown => buttonColor_unknown == Color.fromRGBO(255, 255,
 }
 
 
-
-List k= [];
   @override
   void initState() {
     super.initState();
@@ -55,7 +44,6 @@ setState(() {loading = true; });
   @override
   Widget build(BuildContext context) {
 var size = MediaQuery.of(context).size;
-
 
     return Scaffold(
       appBar: AppBar(
@@ -103,66 +91,6 @@ backgroundColor: Colors.white,
         nameButton:"Dead",
          pressedColor: Color.fromRGBO(185, 0, 0, 0.5),),
 
-
-         
-             
-
-/*  OutlinedButton(
-   style: ButtonStyle(
-   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
-   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFFB90000),  width: 1,));}) ,
-   backgroundColor:MaterialStateProperty.resolveWith((states) {
-     if(states.contains(MaterialState.hovered)) {
-       return Color.fromRGBO(185, 0, 0, 0.2) ;
-     } else if(states.contains(MaterialState.disabled)) {
-       return Color.fromRGBO(255, 255, 255, 0.05) ;
-     }else if(states.contains(MaterialState.pressed)) {
-       return Color.fromRGBO(185, 0, 0, 0.5) ;
-     }
-     
-      else {
-       return  buttonColor_dead;
-     }
-        }),),
-   onPressed: () {
- 
-    if(State_button_Dead == false)
-    {
- providerValue.fetchCharacters(status:"Dead").then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));
- 
-    } 
-     
-    else
- {providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
- 
- 
-   setState(() {
-      buttonColor_dead = State_button_Dead==false?Color.fromRGBO(185, 0, 0, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
- 
-   buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);
-   buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
-   
-   });},
-   child:
-   
-     Row(
-      
-      children: [
-        Container(
-   width: 12,
-   height: 12,
-   decoration: BoxDecoration(
-      color:Color(0xFFB90000),
-      shape: BoxShape.circle),
-   
-        ),
-   
-   SizedBox(width: 2,),
-   
-            Text("Dead" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
-      ],
-   ),
-      ), */
        SizedBox(width: 5,),
 
  filterbutton(
@@ -174,67 +102,6 @@ backgroundColor: Colors.white,
        hoveredColor: Color.fromRGBO(152, 205, 77, 0.2) ,
         nameButton:"Alive",
          pressedColor: Color.fromRGBO(152, 205, 77, 0.5),),
-/*  OutlinedButton(
-   style: ButtonStyle(
-   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
-   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFF98CD4D),  width: 1,));}) ,
-   backgroundColor:MaterialStateProperty.resolveWith((states) {
-     if(states.contains(MaterialState.hovered)) {
-       return Color.fromRGBO(152, 205, 77, 0.2) ;
-     } else if(states.contains(MaterialState.disabled)) {
-       return Color.fromRGBO(255, 255, 255, 0.05) ;
-     } else if(states.contains(MaterialState.pressed)) {
-       return Color.fromRGBO(152, 205, 77, 0.5) ;
-     } 
-     
-     
-     else {
-       return buttonColor_Alive;
-     }
-        }),),
-   onPressed: () { 
- 
-    if(State_button_Alive == false)
-    {
- providerValue.fetchCharacters(status:"Alive").then(
-  (charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value ).toList()));
- 
-    } 
-     
-    else
- {providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
- 
- 
- 
- 
- 
- 
- 
-   setState(() {
-      buttonColor_Alive = State_button_Alive==false?Color.fromRGBO(152, 205, 77, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
-   buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
- 
-   buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
-   
-   });},
-   child: Row(
-      children: [
-        Container(
-   width: 12,
-   height: 12,
-   decoration: BoxDecoration(
-      color:Color(0xFF98CD4D),
-      shape: BoxShape.circle),
-   
-        ),
-   
-   SizedBox(width: 2,),
-   
-            Text("Alive" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
-      ],
-   ),
-      ), */
-
 
         SizedBox(width: 5,),   
 
@@ -249,49 +116,7 @@ backgroundColor: Colors.white,
          pressedColor: Color.fromRGBO(184, 184, 184, 0.5) ,),
 
 
-/*  OutlinedButton(
-   style: ButtonStyle(
-   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
-   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color.fromRGBO(184, 184, 184, 0.5),  width: 1,));}) ,
-   backgroundColor:MaterialStateProperty.resolveWith((states) {
-     if(states.contains(MaterialState.hovered)) {
-       return Color.fromRGBO(184, 184, 184, 0.2) ;
-     }else if(states.contains(MaterialState.disabled)) {
-       return Color.fromRGBO(255, 255, 255, 0.05) ;}
-       else if(states.contains(MaterialState.pressed)) {
-       return Color.fromRGBO(184, 184, 184, 0.5) ;
-     }else {return buttonColor_unknown;}
-        }),),
-   onPressed: () { 
-    if(State_button_unknown == false  )
-    {
- providerValue.fetchCharacters(status:"unknown").then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));
-    }   
-    else
-    {
- providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
- 
- 
- 
-   setState(() {
- buttonColor_unknown = State_button_unknown==false?Color.fromRGBO(184, 184, 184, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
- buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
- buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);});},
-   
-   child: Row(
-      children: [
-        Container(
-   width: 12,
-   height: 12,
-   decoration: BoxDecoration(
-      color:Color(0xFFB8B8B8),
-      shape: BoxShape.circle),
-        ),
-   SizedBox(width: 2,),
-        Text("Unknown" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
-      ],
-   ),
-      ), */
+
         ],),
       )
    ),
@@ -422,3 +247,179 @@ backgroundColor: Colors.white,
 );
   }
 }
+
+
+/* Color buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
+Color buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);
+Color buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
+
+bool get State_button_Dead => buttonColor_dead == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
+bool get State_button_Alive => buttonColor_Alive == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
+bool get State_button_unknown => buttonColor_unknown == Color.fromRGBO(255, 255, 255, 0.05)? false : true ;
+
+ */
+
+
+/*  OutlinedButton(
+   style: ButtonStyle(
+   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
+   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color.fromRGBO(184, 184, 184, 0.5),  width: 1,));}) ,
+   backgroundColor:MaterialStateProperty.resolveWith((states) {
+     if(states.contains(MaterialState.hovered)) {
+       return Color.fromRGBO(184, 184, 184, 0.2) ;
+     }else if(states.contains(MaterialState.disabled)) {
+       return Color.fromRGBO(255, 255, 255, 0.05) ;}
+       else if(states.contains(MaterialState.pressed)) {
+       return Color.fromRGBO(184, 184, 184, 0.5) ;
+     }else {return buttonColor_unknown;}
+        }),),
+   onPressed: () { 
+    if(State_button_unknown == false  )
+    {
+ providerValue.fetchCharacters(status:"unknown").then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));
+    }   
+    else
+    {
+ providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
+ 
+ 
+ 
+   setState(() {
+ buttonColor_unknown = State_button_unknown==false?Color.fromRGBO(184, 184, 184, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
+ buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
+ buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);});},
+   
+   child: Row(
+      children: [
+        Container(
+   width: 12,
+   height: 12,
+   decoration: BoxDecoration(
+      color:Color(0xFFB8B8B8),
+      shape: BoxShape.circle),
+        ),
+   SizedBox(width: 2,),
+        Text("Unknown" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
+      ],
+   ),
+      ), */
+
+
+
+/*  OutlinedButton(
+   style: ButtonStyle(
+   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
+   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFFB90000),  width: 1,));}) ,
+   backgroundColor:MaterialStateProperty.resolveWith((states) {
+     if(states.contains(MaterialState.hovered)) {
+       return Color.fromRGBO(185, 0, 0, 0.2) ;
+     } else if(states.contains(MaterialState.disabled)) {
+       return Color.fromRGBO(255, 255, 255, 0.05) ;
+     }else if(states.contains(MaterialState.pressed)) {
+       return Color.fromRGBO(185, 0, 0, 0.5) ;
+     }
+     
+      else {
+       return  buttonColor_dead;
+     }
+        }),),
+   onPressed: () {
+ 
+    if(State_button_Dead == false)
+    {
+ providerValue.fetchCharacters(status:"Dead").then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));
+ 
+    } 
+     
+    else
+ {providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
+ 
+ 
+   setState(() {
+      buttonColor_dead = State_button_Dead==false?Color.fromRGBO(185, 0, 0, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
+ 
+   buttonColor_Alive = Color.fromRGBO(255, 255, 255, 0.05);
+   buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
+   
+   });},
+   child:
+   
+     Row(
+      
+      children: [
+        Container(
+   width: 12,
+   height: 12,
+   decoration: BoxDecoration(
+      color:Color(0xFFB90000),
+      shape: BoxShape.circle),
+   
+        ),
+   
+   SizedBox(width: 2,),
+   
+            Text("Dead" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
+      ],
+   ),
+      ), */
+
+      /*  OutlinedButton(
+   style: ButtonStyle(
+   fixedSize:MaterialStateProperty.resolveWith((states) {return Size(120, 40);}),
+   shape:MaterialStateProperty.resolveWith((states) {return RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),side: BorderSide(color: Color(0xFF98CD4D),  width: 1,));}) ,
+   backgroundColor:MaterialStateProperty.resolveWith((states) {
+     if(states.contains(MaterialState.hovered)) {
+       return Color.fromRGBO(152, 205, 77, 0.2) ;
+     } else if(states.contains(MaterialState.disabled)) {
+       return Color.fromRGBO(255, 255, 255, 0.05) ;
+     } else if(states.contains(MaterialState.pressed)) {
+       return Color.fromRGBO(152, 205, 77, 0.5) ;
+     } 
+     
+     
+     else {
+       return buttonColor_Alive;
+     }
+        }),),
+   onPressed: () { 
+ 
+    if(State_button_Alive == false)
+    {
+ providerValue.fetchCharacters(status:"Alive").then(
+  (charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value ).toList()));
+ 
+    } 
+     
+    else
+ {providerValue.fetchCharacters().then((charr) => providerValue.addItemCharacters(charr.where((element) => element.origin["name"]==Provider.of<ApiServiceProvider>(context , listen: false).location_value  ).toList()));}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   setState(() {
+      buttonColor_Alive = State_button_Alive==false?Color.fromRGBO(152, 205, 77, 0.05):Color.fromRGBO(255, 255, 255, 0.05);
+   buttonColor_dead = Color.fromRGBO(255, 255, 255, 0.05);
+ 
+   buttonColor_unknown = Color.fromRGBO(255, 255, 255, 0.05);
+   
+   });},
+   child: Row(
+      children: [
+        Container(
+   width: 12,
+   height: 12,
+   decoration: BoxDecoration(
+      color:Color(0xFF98CD4D),
+      shape: BoxShape.circle),
+   
+        ),
+   
+   SizedBox(width: 2,),
+   
+            Text("Alive" ,style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: 'Poppins'),),
+      ],
+   ),
+      ), */
